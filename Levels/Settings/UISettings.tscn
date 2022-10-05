@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Levels/Settings/UIResolutionSettings.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Levels/Settings/UICheckboxSettings.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Levels/Settings/UISettings.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Fonts/buttons_arcade_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Assets/Fonts/h2_font.tres" type="DynamicFont" id=5]
+
+[node name="UISettings" type="Panel"]
+margin_right = 272.0
+margin_bottom = 186.0
+script = ExtResource( 3 )
+
+[node name="UISettingsContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -101.5
+margin_top = -79.0
+margin_right = 101.5
+margin_bottom = 79.0
+alignment = 1
+
+[node name="SettingsLabel" type="Label" parent="UISettingsContainer"]
+margin_top = 7.0
+margin_right = 218.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 5 )
+text = "Settings"
+align = 1
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="UISettingsContainer"]
+margin_top = 35.0
+margin_right = 218.0
+margin_bottom = 39.0
+
+[node name="UIResolutionSettings" parent="UISettingsContainer" instance=ExtResource( 1 )]
+margin_top = 43.0
+margin_right = 218.0
+margin_bottom = 66.0
+
+[node name="UICheckboxSettings" parent="UISettingsContainer" instance=ExtResource( 2 )]
+margin_top = 70.0
+margin_right = 218.0
+margin_bottom = 95.0
+
+[node name="ApplyButton" type="Button" parent="UISettingsContainer"]
+margin_top = 99.0
+margin_right = 218.0
+margin_bottom = 123.0
+custom_fonts/font = ExtResource( 4 )
+text = "Apply"
+
+[node name="CancelButton" type="Button" parent="UISettingsContainer"]
+margin_top = 127.0
+margin_right = 218.0
+margin_bottom = 151.0
+custom_fonts/font = ExtResource( 4 )
+text = "Cancel"
+
+[connection signal="pressed" from="UISettingsContainer/ApplyButton" to="." method="_on_ApplyButton_pressed"]
+[connection signal="pressed" from="UISettingsContainer/CancelButton" to="." method="_on_CancelButton_pressed"]

@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Fonts/buttons_arcade_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Fonts/title_arcade_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Levels/Menus/PostScreen.gd" type="Script" id=3]
+
+[node name="DeathScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.529412, 0.447059, 0.52549, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="GameOverText" type="Label" parent="CanvasLayer"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -112.0
+margin_bottom = -30.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Game over"
+align = 1
+
+[node name="PlayButton" type="Button" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -57.0
+margin_top = 29.0
+margin_right = 57.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Play Again"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="QuitButton" type="Button" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -28.0
+margin_top = 61.0
+margin_right = 28.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Quit"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[connection signal="pressed" from="CanvasLayer/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/QuitButton" to="." method="_on_QuitButton_pressed"]

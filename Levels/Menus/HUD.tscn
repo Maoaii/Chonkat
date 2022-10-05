@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Fonts/hud_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Levels/Menus/HUD.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/h3_font.tres" type="DynamicFont" id=3]
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TreatsLabel" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -314.0
+margin_top = -176.0
+margin_right = -137.0
+margin_bottom = -145.0
+custom_fonts/font = ExtResource( 1 )
+text = "Treats: XXX"
+align = 1
+valign = 1
+
+[node name="QuitInfoLabel" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 163.0
+margin_top = 151.0
+margin_right = 313.0
+margin_bottom = 176.0
+custom_fonts/font = ExtResource( 3 )
+text = "Press Q to quit"
+align = 1
+valign = 1

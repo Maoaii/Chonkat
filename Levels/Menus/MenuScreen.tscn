@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Fonts/title_arcade_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Levels/Settings/UISettings.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Levels/Menus/MenuScreen.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Fonts/buttons_arcade_font.tres" type="DynamicFont" id=4]
+
+[node name="MenuScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.529412, 0.447059, 0.52549, 1 )
+
+[node name="GameTitle" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -189.5
+margin_top = -121.0
+margin_right = 189.5
+margin_bottom = -39.0
+custom_fonts/font = ExtResource( 1 )
+text = "CHONKAT"
+
+[node name="PlayButton" type="Button" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -33.5
+margin_top = 21.0
+margin_right = 33.5
+margin_bottom = 50.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "Start"
+flat = true
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = 49.0
+margin_right = 50.0
+margin_bottom = 76.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "Settings"
+flat = true
+
+[node name="QuitButton" type="Button" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -28.0
+margin_top = 79.0
+margin_right = 28.0
+margin_bottom = 106.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "Quit"
+flat = true
+
+[node name="UISettings" parent="CanvasLayer" instance=ExtResource( 2 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -136.0
+margin_top = -34.0
+margin_right = 136.0
+margin_bottom = 152.0
+
+[connection signal="pressed" from="CanvasLayer/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/QuitButton" to="." method="_on_QuitButton_pressed"]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Player/NextLevelUI.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/buttons_arcade_font.tres" type="DynamicFont" id=2]
+
+[node name="NextLevelUI" type="Control" groups=["NextLevelUI"]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Buttons" type="Panel" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -81.0
+margin_top = -49.5
+margin_right = 81.0
+margin_bottom = 49.5
+
+[node name="NextLevelButton" type="Button" parent="CanvasLayer/Buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -63.0
+margin_top = -38.5
+margin_right = 63.0
+margin_bottom = -11.5
+custom_fonts/font = ExtResource( 2 )
+text = "Next Level"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/Buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -47.0
+margin_top = 10.5
+margin_right = 47.0
+margin_bottom = 37.5
+custom_fonts/font = ExtResource( 2 )
+text = "Restart"
+
+[connection signal="pressed" from="CanvasLayer/Buttons/NextLevelButton" to="." method="_on_NextLevelButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Buttons/RestartButton" to="." method="_on_RestartButton_pressed"]
