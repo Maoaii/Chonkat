@@ -18,6 +18,12 @@ func _on_RestartButton_pressed():
 
 
 func _on_NextLevelButton_pressed():
-	Global.current_level = next_level
+	Global.next_level(next_level)
 # warning-ignore:return_value_discarded
 	get_tree().change_scene_to(next_level)
+
+
+func _on_MenuButton_pressed():
+	Global.reset_level()
+	Global.reset_treats()
+	get_tree().change_scene_to(Global.LEVELS[0])
