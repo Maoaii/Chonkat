@@ -6,8 +6,8 @@ func _on_QuitButton_pressed():
 func _on_PlayButton_pressed():
 	if Global.current_level == Global.LEVELS[len(Global.LEVELS) - 1]:
 # warning-ignore:return_value_discarded
-		Global.current_treats = 0
-		Global.current_level = Global.LEVELS[1]
+		Global.reset_treats()
+		Global.reset_level()
 		get_tree().change_scene_to(Global.LEVELS[0])
 	else:
 # warning-ignore:return_value_discarded
