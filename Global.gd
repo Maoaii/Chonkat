@@ -1,5 +1,7 @@
 extends Node
 
+const BLOCK_SIZE = 32
+
 var LEVELS = {
 	0: load("res://Levels/Menus/MenuScreen.tscn"),
 	1: load("res://Levels/Level1.tscn"),
