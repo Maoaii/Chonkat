@@ -12,7 +12,7 @@ func update_raycast():
 	force_raycast_update()
 	
 	if is_colliding():
-		emit_signal("collided")
+		emit_signal("collided", get_collider())
 		dir = Vector2(0, 0)
 	
 	draw_raycast()

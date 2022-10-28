@@ -45,12 +45,14 @@ func _on_MovementTimer_timeout():
 	movement_timer.start()
 
 
-func _on_RayCast_collided():
+func _on_RayCast_collided(collider):
+	if collider.name == "Food":
+		next_level()
+	
 	canMove = true
 	dir = Vector2(0, 0)
 	camera_shake()
 
-	
 
 func set_movement(direction):
 	dir = DIRECTIONS[direction]
@@ -72,3 +74,8 @@ func camera_shake():
 
 func freeze_player():
 	isFrozen = true
+
+
+func next_level():
+	freeze_player()
+	get_tree().call_group("NextLevelUI", "draw_ui")
