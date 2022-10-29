@@ -1,27 +1,27 @@
-extends KinematicBody2D
+extends Node2D
+
+signal moved
 
 onready var camera = $Camera2D
+onready var movement_timer = $MovementTimer
 
-export var SPEED = 200
 export var MOVE_COUNTER = 5
 
 var DIRECTIONS = {
-	"up": Vector2(0, -SPEED),
-	"down": Vector2(0, SPEED),
-	"left": Vector2(-SPEED, 0),
-	"right": Vector2(SPEED, 0),
+	"up": Vector2(0, -1),
+	"down": Vector2(0, 1),
+	"left": Vector2(-1, 0),
+	"right": Vector2(1, 0),
 }
 
-var velocity = Vector2()
+var dir = Vector2(1, 0)
 var canMove = true
-var isShake = false
 var isFrozen = false
 
 func _ready():
 	get_tree().call_group("HUD", "update_move_counter", MOVE_COUNTER)
 
-# warning-ignore:unused_argument
-func _physics_process(delta):
+func _unhandled_input(event):
 	if canMove and not isFrozen:
 		if Input.is_action_just_pressed("up"):
 			set_movement("up")
@@ -31,22 +31,36 @@ func _physics_process(delta):
 			set_movement("left")
 		elif Input.is_action_just_pressed("right"):
 			set_movement("right")
+
+
+func move(direction):
+	position += direction * Global.BLOCK_SIZE
+
+
+func _on_MovementTimer_timeout():
+	if !canMove:
+		emit_signal("moved", dir)
+		move(dir)
 	
-	move()
+	movement_timer.start()
+
+
+func _on_RayCast_collided(collider):
+	if collider.name == "Food":
+		next_level()
+	
+	canMove = true
+	dir = Vector2(0, 0)
+	camera_shake()
 
 
 func set_movement(direction):
-	set_velocity(direction)
+	dir = DIRECTIONS[direction]
 	set_variables()
-
-
-func set_velocity(direction):
-	velocity = DIRECTIONS[direction]
 
 
 func set_variables():
 	canMove = false
-	isShake = true
 	MOVE_COUNTER -= 1
 	get_tree().call_group("HUD", "update_move_counter", MOVE_COUNTER)
 	
@@ -54,22 +68,14 @@ func set_variables():
 		get_tree().change_scene("res://Levels/Menus/DeathScreen.tscn")
 
 
-func move():
-	velocity = move_and_slide(velocity, Vector2.UP)
-	
-	if velocity == Vector2(velocity.x, 0) and is_on_wall():
-		canMove = true
-		camera_shake()
-	elif velocity == Vector2(0, velocity.y) and (is_on_ceiling() or is_on_floor()):
-		canMove = true
-		camera_shake()
-
-
 func camera_shake():
-	if isShake:
-		camera.ready_the_shake()
-		isShake = false
+	camera.ready_the_shake()
 
 
 func freeze_player():
 	isFrozen = true
+
+
+func next_level():
+	freeze_player()
+	get_tree().call_group("NextLevelUI", "draw_ui")
