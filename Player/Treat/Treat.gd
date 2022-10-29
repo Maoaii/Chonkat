@@ -2,5 +2,5 @@ extends Area2D
 
 func _on_Treat_area_entered(area):
 	if area.name == "PlayerBody":
-		Global.current_treats += 1
+		PlayerConfig.current_treats_increment()
 		self.queue_free()

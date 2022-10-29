@@ -17,6 +17,7 @@ config/icon="res://Assets/Player/placeholder_player.png"
 [autoload]
 
 Global="*res://Global.gd"
+PlayerConfig="*res://PlayerConfig.gd"
 
 [display]
 

@@ -11,13 +11,8 @@ var LEVELS = {
 
 var current_level : PackedScene = LEVELS[1]
 
-var current_treats = 0
-
 func next_level(next_level):
 	current_level = next_level
 
 func reset_level():
 	current_level = LEVELS[1]
-
-func reset_treats():
-	current_treats = 0
