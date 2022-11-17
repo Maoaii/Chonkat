@@ -4,6 +4,7 @@ signal moved
 
 onready var camera = $Camera2D
 onready var movement_timer = $MovementTimer
+onready var animation_player = $AnimationPlayer
 
 export var MOVE_COUNTER = 5
 
@@ -14,12 +15,20 @@ var DIRECTIONS = {
 	"right": Vector2(1, 0),
 }
 
+var STATES = {
+	"idle": "idle",
+}
+
+var state = STATES["idle"]
 var dir = Vector2(1, 0)
 var canMove = true
 var isFrozen = false
 
 func _ready():
 	get_tree().call_group("HUD", "update_move_counter", MOVE_COUNTER)
+
+func _process(_delta):
+	animation_player.play(state)
 
 func _unhandled_input(event):
 	if canMove and not isFrozen:
